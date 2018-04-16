@@ -1,0 +1,23 @@
+{
+  "name": "parse-smart-contract",
+  "version": "1.0.0",
+  "description": "Example for using web3 to parse transaction and contract data",
+  "repository": "https://github.com/ssc806",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "web3"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wanchain-util": "git+https://github.com/wanchain/wanchain-util.git",
+    "web3": "^0.20.2"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "secp256k1": "^3.5.0"
+  }
+}
