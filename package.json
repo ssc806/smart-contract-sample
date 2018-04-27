@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "wanchain-util": "git+https://github.com/wanchain/wanchain-util.git",
-    "web3": "^0.20.2"
+    "web3": "^0.20.2",
+    "abi-decoder": "^1.1.0"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
