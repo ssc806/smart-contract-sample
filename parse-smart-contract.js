@@ -97,3 +97,19 @@ web3.eth.getTransaction(txHash, function(err, result) {
 	}
 })
 
+const filterOptions = {
+  fromBlock: '800000',
+  toBlock: '886639',
+  address: contractAddress,
+};
+
+let filter = web3.eth.filter(filterOptions);
+
+filter.get(function(error, result) {
+    if (!error) {
+        console.log(result);
+    }
+});
+
+
+
