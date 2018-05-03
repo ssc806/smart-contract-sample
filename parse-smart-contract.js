@@ -107,7 +107,9 @@ let filter = web3.eth.filter(filterOptions);
 
 filter.get(function(error, result) {
     if (!error) {
-        console.log(result);
+	for (i in result) {
+            console.log(result[i]);
+	}
     }
 });
 
