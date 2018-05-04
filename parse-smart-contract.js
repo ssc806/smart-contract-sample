@@ -104,14 +104,80 @@ const filterOptions = {
 };
 
 let filter = web3.eth.filter(filterOptions);
-
 filter.get(function(error, result) {
     if (!error) {
-	for (i in result) {
-            console.log(result[i]);
-	}
+    	for (i in result) {
+    	    parseEvent(result[i], abi)
+            //console.log(result[i]);
+        }
     }
 });
 
+function parseEvent(logData, abi){
+	let event;
+	let i;
+	let item;
+	let signature;
+	let hash;
+	let inputs;
+	let data;
+
+	for (i = 0; i < abi.length; i++) {
+		item = abi[i];
+		if (item.type != "event") {
+			continue;
+		}
+
+		signature = item.name + 
+		           "(" + 
+		           item.inputs.map(
+		               function(input) {
+		                   return input.type;
+		               }).join(",") + 
+		           ")";
+
+		hash = web3.sha3(signature);
+		if (hash == logData.topics[0]) {
+			event = item;
+			break;
+		}
+	}
+
+    console.log(event.name)
+
+	if (event != null && event.name === 'Transfer') {
+		//inputs = event.inputs.map(function(input) {return input.type;});
+		//data = SolidityCoder.decodeParams(inputs, logData.data.replace("0x", ""));
+		fromAddr = '0x' + logData.topics[1].slice(-40);
+		toAddr = '0x' + logData.topics[2].slice(-40);
+		value = web3.fromWei(web3.toDecimal(logData.data));
+		value = precisionRound(value, 2);
+
+        console.log('Transaction Hash: ' + logData.transactionHash);
+		console.log('From: ' + fromAddr);
+		console.log('To: ' + toAddr);
+		console.log('Value: ' + value);
+	}
+}
+
+function precisionRound(number, precision) {
+  let factor = Math.pow(10, precision);
+  return Math.round(number * factor) / factor;
+}
+
+/*
+{ address: '0xa4b45e5d5eee0eb8305ee6c7b621979aac31df69',
+  topics: 
+   [ '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+     '0x000000000000000000000000cab6ad272d18a52ecd8fc1f37398aba675145990',
+     '0x00000000000000000000000033257ca38405281d8bcacfdfaa0bf73aa2e09601' ],
+  data: '0x000000000000000000000000000000000000000000000000155f2dd73a1a0000',
+  blockNumber: 852228,
+  transactionHash: '0x0a26f31c3640cd1f246b77acad1729d2aa0e02beee9fb7e1a14b3af3c272983c',
+  transactionIndex: 0,
+  blockHash: '0xfa51003f3f42c0d5282b4f0ee1c206ca0a0ff64f69b600ad5787b2372eff277a',
+  logIndex: 0,
+  removed: false }
+*/
 
 
