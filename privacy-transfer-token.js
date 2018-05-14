@@ -62,7 +62,7 @@ main()
 
 async function main(){
     const senderAddress = '0xcAb6aD272D18A52ECd8fc1F37398AbA675145990';
-    const senderPassword = 'viral123';
+    const senderPassword = '********';
     const senderWanAddress = '0x02dbfa7c8cb8d77f005055fd589f88624e4ca88e75b93b42bfe8a99ff02db2761a02304204862654ca5428d88c6bfe5b43c27fbcb4457d06d78485c69e54e0297154';
 
     const tokenHolderOTAAddress = wanUtil.generateOTAWaddress(senderWanAddress);

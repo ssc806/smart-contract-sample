@@ -6,7 +6,7 @@ const wanUtil = require('wanchain-util');
 const keythereum = require('keythereum');
 
 const senderAddress = '0xcAb6aD272D18A52ECd8fc1F37398AbA675145990';
-const senderPassword = 'viral123';
+const senderPassword = '********';
 const recipientCount = 2;
 const recipient = '0xE915bD5624623dF50f9a6Dd5B585692e2dABC9B0';
 
