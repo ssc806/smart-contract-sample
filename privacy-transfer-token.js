@@ -100,7 +100,7 @@ async function main(){
         console.log(error);
     }
 
-    // Step4 - Get the init privacy token by web3
+    // Step3 - Get the init privacy token by web3
     try {
         ret = await promisify(callback => farwestPrivacyTokenContract.otaBalanceOf(tokenHolderAddress, callback));
         privacyTokenBalance = web3.fromWei(web3.toDecimal(ret));
@@ -111,7 +111,7 @@ async function main(){
     }
 
 
-    // Step5 - Buy stamp
+    // Step4 - Buy stamp
     const stampContract = web3.eth.contract(stampABI).at(stampSmartContractAddress);
     
     let senderStampOTAAddress = wanUtil.generateOTAWaddress(senderWanAddress);
@@ -129,7 +129,7 @@ async function main(){
         console.log(error);
     }
 
-    // Step7 - Get ring sign data and Send privacy token transaction
+    // Step5 - Get ring sign data and Send privacy token transaction
     const stampMixNumber = 3;
     try {
         otaSet = await promisify(callback => web3.wan.getOTAMixSet(senderStampOTAAddress, stampMixNumber, callback));
@@ -137,11 +137,11 @@ async function main(){
         ringSignData = getRingSignData (senderAddress, senderPassword, senderStampOTAAddress, tokenHolderAddress, otaSet);
         combinedData = getCombinedData (recipientWanAddress, ringSignData);
 
-        console.log('ringSignData is ');
-        console.log (ringSignData);
+        //console.log('ringSignData is ');
+        //console.log (ringSignData);
 
-        console.log('combinedData is ');
-        console.log (combinedData);
+        //console.log('combinedData is ');
+        //console.log (combinedData);
 
         tokenHolderPrivateKey = '0x' + getOTAPrivateKey(senderAddress, senderPassword, tokenHolderOTAAddress).toString('hex');
         privacyTokenTransaction = {
@@ -155,7 +155,7 @@ async function main(){
         };
 
 
-console.log (privacyTokenTransaction);
+       console.log (privacyTokenTransaction);
 
         ret = await promisify(callback => web3.wan.sendPrivacyCxtTransaction(privacyTokenTransaction, tokenHolderPrivateKey, callback));
         console.log ('Send privacy token tx hash is ' + ret);
@@ -164,8 +164,8 @@ console.log (privacyTokenTransaction);
     }
 
 
-    // Step8 - Search the transfer log
-    // Step9 - Parse the transaction data (log?) by the ABI
+    // Step6 - Search the transfer log
+    // Step7 - Parse the transaction data (log) by the ABI
 
 
     process.exit();
