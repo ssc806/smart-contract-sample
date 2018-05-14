@@ -1,0 +1,27 @@
+module.exports = [
+	{
+		"constant":false,
+		"type":"function",
+		"inputs":[
+			{
+				"name":"RingSignedData",
+				"type":"string"
+			},
+			{
+				"name":"CxtCallParams",
+				"type":"bytes"
+			}
+		],
+		"name":"combine",
+		"outputs":[
+			{
+				"name":"RingSignedData",
+				"type":"string"
+			},
+			{
+				"name":"CxtCallParams",
+				"type":"bytes"
+			}
+		]
+	}
+];

@@ -16,7 +16,8 @@
     "keythereum": "^1.0.2",
     "wanchain-util": "^1.2.0",
     "web3": "^0.20.2",
-    "abi-decoder": "^1.1.0"
+    "abi-decoder": "^1.1.0",
+    "secp256k1": "^3.4.0"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
