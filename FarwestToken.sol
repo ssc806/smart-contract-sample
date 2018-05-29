@@ -93,7 +93,7 @@ contract FarwestToken is EIP20 {
 
     function () public payable {
         address recipient = msg.sender;
-        uint256 getTokens = 1 * msg.value; // 1:1 to get tokens, msg.value is the received ether
+        uint256 getTokens = 1000 * msg.value; // 1:1000 to get tokens, msg.value is the received ether
         balances[recipient] += getTokens;
         balances[owner] -= getTokens;
         
